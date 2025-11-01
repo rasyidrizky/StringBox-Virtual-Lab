@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Virtual Lab - Berpikir Komputasional TPB ITB</title>
-    <link rel="stylesheet" href="../style/styles.css">
+    <link rel="stylesheet" href="../style/profile.css">
+    <link rel="stylesheet" href="../style/auth.css">
+    <link rel="stylesheet" href="../style/responsive.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -19,21 +21,21 @@
         <div class="logo">
             <div class="logo-icon">
                 <div class="logo-text">
-                    <h1>VIRTUAL LAB</h1>
-                    <p>by Kenzie R</p>
+                    <h1>StringBox</h1>
+                    <p>Virtual Lab</p>
                 </div>
             </div>
         </div>
         
         <nav id="mainNav" class="main-nav">
             <ul>
-                <li><button onclick="showPage('home')" class="nav-btn active" data-page="home">Beranda</button></li>
-                <li><button onclick="showPage('material')" class="nav-btn" data-page="material">Materi</button></li>
-                <li><button onclick="showPage('practice')" class="nav-btn" data-page="practice">Latihan</button></li>
-                <li><button onclick="showPage('drag-drop')" class="nav-btn" data-page="drag-drop">Drag&Drop</button></li>
-                <li><button onclick="showPage('canvas-viz')" class="nav-btn" data-page="canvas-viz">Visualisasi</button></li>
-                <li><button onclick="showPage('leaderboard')" class="nav-btn" data-page="leaderboard">Leaderboard</button></li>
-                <li><button onclick="showPage('profile')" class="nav-btn" data-page="profile">Academic Progress</button></li>
+                <li><button onclick="window.location.href='/'" class="nav-btn" data-page="home">Beranda</button></li>
+                <li><button onclick="window.location.href='material'" class="nav-btn" data-page="material">Materi</button></li>
+                <li><button onclick="window.location.href='practice'" class="nav-btn" data-page="practice">Latihan</button></li>
+                <li><button onclick="window.location.href='dragdrop'" class="nav-btn" data-page="drag-drop">Drag&Drop</button></li>
+                <li><button onclick="window.location.href='canvas'" class="nav-btn" data-page="canvas-viz">Visualisasi</button></li>
+                <li><button onclick="window.location.href='leaderboard'" class="nav-btn" data-page="leaderboard">Leaderboard</button></li>
+                <li><button onclick="window.location.href='profile'" class="nav-btn active" data-page="profile">Academic Progress</button></li>
             </ul>
         </nav>
         
@@ -113,7 +115,7 @@
     </div>
 
     <main>
-        <section id="profile" class="page">
+        <section id="profile" class="page active">
             <h1 class="page-title">🎓 Academic Progress</h1>
             
             <div class="profile-container">
@@ -166,9 +168,7 @@
         </section>
     </main>
 
-    <script src="../app/navigation.js" type="module"></script>
-    <script src="../app/mobile.js" type="module"></script>
-    <script src="../service/auth.js" type="module"></script>
-    <script src="../service/profile.js" type="module"></script>
+    <script src="../route/global.js" type="module"></script>
+    <script src="../route/profileroute.js" type="module"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+import { isSupabaseEnabled, currentUser, supabaseClient } from "./supabase";
+
 export function calculateChapterAverage(chapterScores, chapterNum) {
     const babKey = `bab${chapterNum}`;
     const soalScores = chapterScores[babKey] || {};

@@ -1,4 +1,5 @@
 import { showAuthModal } from './auth.js';
+import { isSupabaseEnabled, currentUser, supabaseClient } from "./supabase.js";
 
 export async function markChapterComplete(chapterNum) {
     if (!isSupabaseEnabled || !currentUser) {

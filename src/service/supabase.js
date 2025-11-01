@@ -1,7 +1,7 @@
-import { updateUIForGuestUser, updateUIForAuthenticatedUser } from "./auth.js";
+import { showWelcomeModal } from "./welcome.js";
 
-export const SUPABASE_URL = 'https://blkplgvhkgtsgnindwht.supabase.co'; 
-export const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsa3BsZ3Zoa2d0c2duaW5kd2h0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5NDM1NjMsImV4cCI6MjA3NTUxOTU2M30.HClTmehLskf_mgebwpRH9g-gyprqjIs8mn97HBOIT1k';
+const SUPABASE_URL = 'https://blkplgvhkgtsgnindwht.supabase.co'; 
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsa3BsZ3Zoa2d0c2duaW5kd2h0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5NDM1NjMsImV4cCI6MjA3NTUxOTU2M30.HClTmehLskf_mgebwpRH9g-gyprqjIs8mn97HBOIT1k';
 export let supabaseClient = null;
 export let currentUser = null;
 export let isSupabaseEnabled = false;
@@ -31,6 +31,26 @@ export function initSupabase() {
         isSupabaseEnabled = false;
         updateUIForGuestUser();
     }
+}
+
+export function updateUIForAuthenticatedUser() {
+    const signInBtn = document.getElementById('signInBtn');
+    const userProfileHeader = document.getElementById('userProfileHeader');
+    const userNameHeader = document.getElementById('userNameHeader');
+    
+    if (signInBtn) signInBtn.style.display = 'none';
+    if (userProfileHeader) userProfileHeader.style.display = 'flex';
+    if (userNameHeader) {
+        userNameHeader.textContent = currentUser.displayName || currentUser.email.split('@')[0];
+    }
+}
+
+export function updateUIForGuestUser() {
+    const signInBtn = document.getElementById('signInBtn');
+    const userProfileHeader = document.getElementById('userProfileHeader');
+    
+    if (signInBtn) signInBtn.style.display = 'block';
+    if (userProfileHeader) userProfileHeader.style.display = 'none';
 }
 
 export async function checkAuthState() {
@@ -81,7 +101,7 @@ export async function checkAuthState() {
     }
 }
 
-async function loadUserProfile() {
+export async function loadUserProfile() {
     if (!isSupabaseEnabled || !currentUser) return;
     try {
         const { data } = await supabaseClient
@@ -96,7 +116,7 @@ async function loadUserProfile() {
     }
 }
 
-async function createUserProfile() {
+export async function createUserProfile() {
     if (!isSupabaseEnabled || !currentUser) return;
     try {
         const displayName = currentUser.user_metadata?.full_name || currentUser.email.split('@')[0];
@@ -108,24 +128,4 @@ async function createUserProfile() {
     } catch (error) {
         console.error('Error creating profile:', error);
     }
-}
-
-function updateUIForAuthenticatedUser() {
-    const signInBtn = document.getElementById('signInBtn');
-    const userProfileHeader = document.getElementById('userProfileHeader');
-    const userNameHeader = document.getElementById('userNameHeader');
-    
-    if (signInBtn) signInBtn.style.display = 'none';
-    if (userProfileHeader) userProfileHeader.style.display = 'flex';
-    if (userNameHeader) {
-        userNameHeader.textContent = currentUser.displayName || currentUser.email.split('@')[0];
-    }
-}
-
-function updateUIForGuestUser() {
-    const signInBtn = document.getElementById('signInBtn');
-    const userProfileHeader = document.getElementById('userProfileHeader');
-    
-    if (signInBtn) signInBtn.style.display = 'block';
-    if (userProfileHeader) userProfileHeader.style.display = 'none';
 }

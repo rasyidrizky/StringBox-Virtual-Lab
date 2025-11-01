@@ -10,27 +10,27 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'view', 'index.html'));
 });
 
-app.get('/canvas', (req, res) => {
+app.get('/canvas/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'view', 'canvas.html'));
 });
 
-app.get('/dragdrop', (req, res) => {
+app.get('/dragdrop/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'view', 'dragdrop.html'));
 });
 
-app.get('/leaderboard', (req, res) => {
+app.get('/leaderboard/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'view', 'leaderboard.html'));
 });
 
-app.get('/material', (req, res) => {
+app.get('/material/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'view', 'material.html'));
 });
 
-app.get('/practice', (req, res) => {
+app.get('/practice/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'view', 'practice.html'));
 });
 
-app.get('/profile', (req, res) => {
+app.get('/profile/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'view', 'profile.html'));
 });
 

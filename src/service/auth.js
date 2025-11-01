@@ -1,23 +1,6 @@
-import { supabaseClient, isSupabaseEnabled, currentUser, loadUserProfile } from "./supabase.js";
+import { supabaseClient, isSupabaseEnabled, loadUserProfile, currentUser, updateUIForAuthenticatedUser, updateUIForGuestUser } from "./supabase.js";
 import { loadUserProgress } from './progress.js';
-import { showPage } from "../app/navigation.js";
-
-export function showWelcomeModal() {
-    if (!isSupabaseEnabled) return;
-    const modal = document.getElementById('welcomeModal');
-    if (modal) {
-        modal.style.display = 'flex';
-        modal.classList.add('show');
-    }
-}
-
-export function closeWelcomeModal() {
-    const modal = document.getElementById('welcomeModal');
-    if (modal) {
-        modal.style.display = 'none';
-        modal.classList.remove('show');
-    }
-}
+import { showWelcomeModal, closeWelcomeModal } from "./welcome.js";
 
 export function closeAuthModal() {
     const modal = document.getElementById('authModal');
@@ -26,26 +9,6 @@ export function closeAuthModal() {
         modal.classList.remove('show');
     }
     clearAuthMessage();
-}
-
-export function updateUIForAuthenticatedUser() {
-    const signInBtn = document.getElementById('signInBtn');
-    const userProfileHeader = document.getElementById('userProfileHeader');
-    const userNameHeader = document.getElementById('userNameHeader');
-    
-    if (signInBtn) signInBtn.style.display = 'none';
-    if (userProfileHeader) userProfileHeader.style.display = 'flex';
-    if (userNameHeader) {
-        userNameHeader.textContent = currentUser.displayName || currentUser.email.split('@')[0];
-    }
-}
-
-export function updateUIForGuestUser() {
-    const signInBtn = document.getElementById('signInBtn');
-    const userProfileHeader = document.getElementById('userProfileHeader');
-    
-    if (signInBtn) signInBtn.style.display = 'block';
-    if (userProfileHeader) userProfileHeader.style.display = 'none';
 }
 
 export async function signIn() {
@@ -191,7 +154,7 @@ export async function signInWithGoogle() {
     }
 }
 
-function showAuthMessage(message, type) {
+export function showAuthMessage(message, type) {
     const messageDiv = document.getElementById('authMessage');
     if (messageDiv) {
         messageDiv.textContent = message;
@@ -199,10 +162,58 @@ function showAuthMessage(message, type) {
     }
 }
 
-function clearAuthMessage() {
+export function clearAuthMessage() {
     const messageDiv = document.getElementById('authMessage');
     if (messageDiv) {
         messageDiv.className = 'auth-message';
         messageDiv.textContent = '';
+    }
+}
+
+export async function checkAuthState() {
+    if (!isSupabaseEnabled) return;
+    try {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session && session.user) {
+            currentUser = session.user;
+            
+            const { data: existingProfile } = await supabaseClient
+                .from('user_profiles')
+                .select('*')
+                .eq('user_id', currentUser.id)
+                .single();
+            
+            if (!existingProfile) {
+                const displayName = currentUser.user_metadata?.full_name || 
+                                   currentUser.user_metadata?.name || 
+                                   currentUser.email.split('@')[0];
+                
+                await supabaseClient.from('user_profiles').insert([{
+                    user_id: currentUser.id,
+                    display_name: displayName
+                }]);
+                
+                await supabaseClient.from('user_progress').insert([{
+                    user_id: currentUser.id,
+                    completed_modules: [],
+                    chapter_scores: {},
+                    drag_drop_stats: { attempts: 0, correct: 0 }
+                }]);
+                
+                currentUser.displayName = displayName;
+            } else {
+                currentUser.displayName = existingProfile.display_name;
+            }
+            
+            updateUIForAuthenticatedUser();
+        } else {
+            updateUIForGuestUser();
+            if (!sessionStorage.getItem('welcomeShown')) {
+                showWelcomeModal();
+                sessionStorage.setItem('welcomeShown', 'true');
+            }
+        }
+    } catch (error) {
+        console.error('Auth check error:', error);
     }
 }

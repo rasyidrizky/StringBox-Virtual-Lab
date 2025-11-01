@@ -1,5 +1,9 @@
+//import { updateDragDropStats } from "../service/progress";
+
 let draggedElement = null;
 let isDragInitialized = false;
+let touchStartX = 0;
+let touchStartY = 0;
 
 const dragDropProblems = [
     {
@@ -78,9 +82,6 @@ export function handleDrop(e) {
     
     draggedElement = null;
 }
-
-let touchStartX = 0;
-let touchStartY = 0;
 
 export function handleTouchStart(e) {
     e.preventDefault();

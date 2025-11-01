@@ -39,5 +39,6 @@ export function showChapterProblems(chapterNum) {
 }
 
 export function backToChapterSelection() {
-    window.location.href = "practice.html";
+    document.getElementById('chapter-selection').style.display = 'block';
+    document.getElementById('problems-container').style.display = 'none';
 }
