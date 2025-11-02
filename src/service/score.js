@@ -1,4 +1,4 @@
-import { isSupabaseEnabled, currentUser, supabaseClient } from "./supabase";
+import { isSupabaseEnabled, currentUser, supabaseClient } from "./supabase.js";
 
 export function calculateChapterAverage(chapterScores, chapterNum) {
     const babKey = `bab${chapterNum}`;
@@ -24,6 +24,9 @@ export function calculateTotalScore(chapterScores) {
 export async function saveChapterScore(chapterNum, problemNum, score) {
     if (!isSupabaseEnabled || !currentUser) return;
     
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000); // ⏱️ 5s safety
+
     try {
         let { data: progress, error: fetchError } = await supabaseClient
             .from('user_progress')
@@ -80,5 +83,7 @@ export async function saveChapterScore(chapterNum, problemNum, score) {
         }
     } catch (error) {
         console.error('Error saving score:', error);
+    } finally {
+        clearTimeout(timeout);
     }
 }

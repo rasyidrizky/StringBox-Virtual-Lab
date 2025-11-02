@@ -1,5 +1,5 @@
 import { generateProblems } from '../app/problems.js';
-import { runCode } from '../app/code.js';
+import { runCode } from '../app/runcode.js';
 import { resetCode } from '../service/assessment.js';
 
 document.addEventListener('DOMContentLoaded', () => {

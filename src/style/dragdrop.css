@@ -128,6 +128,20 @@
     50% { transform: scale(1.05); }
 }
 
+.reset-button {
+    background: var(--surface-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.reset-button:hover {
+    background: var(--primary-dark);
+}
+
 /* ==================== DRAG & DROP TOUCH SUPPORT ==================== */
 .code-block {
     background: var(--secondary-dark);
