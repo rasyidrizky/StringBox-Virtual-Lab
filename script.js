@@ -7,7 +7,7 @@ app.use(express.static(path.join(__dirname, 'src')));
 
 // Route for root (index)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src', 'view', 'index.html'));
+  res.sendFile(path.join(__dirname, 'src', 'index.html'));
 });
 
 app.get('/canvas/', (req, res) => {
