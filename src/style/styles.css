@@ -6,17 +6,17 @@
 }
 
 :root {
-    --primary-dark: #0f172a;
-    --secondary-dark: #1e293b;
-    --accent-blue: #3b82f6;
-    --light-blue: #60a5fa;
+    --primary-dark: #1e122b;
+    --secondary-dark: #2f1e40;
+    --accent-purple: #8b5cf6;
+    --darker-purple: #6d28d9;
     --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --border-color: #334155;
-    --surface-bg: #1e293b;
-    --gradient-primary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    --text-secondary: #a89abf;
+    --text-muted: #6b5a80;
+    --border-color: #4a3a60;
+    --surface-bg: #2f1e40;
+    --gradient-primary: linear-gradient(135deg, #160d1d 0%, #1e122b 100%);
+    --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
 }
 
 body {
@@ -29,7 +29,7 @@ body {
 
 /* ==================== HEADER ==================== */
 header {
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(30, 18, 43, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
@@ -51,18 +51,15 @@ header {
     align-items: center;
 }
 
-
-.logo-text h1 {
-    font-size: 1.5rem;  
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.2;
+.logo-img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.2s ease;
 }
 
-.logo-text p {
-    font-size: 0.9rem;
-    color: var(--accent-blue); 
-    margin-top: 2px;
+.logo-img:hover {
+    transform: scale(1.05);
 }
 
 nav ul {
@@ -94,7 +91,7 @@ nav button::before {
     left: 50%;
     width: 0;
     height: 2px;
-    background: var(--accent-blue);
+    background: var(--accent-purple);
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
@@ -108,7 +105,7 @@ nav button:hover::before {
 }
 
 nav button.active {
-    color: var(--accent-blue);
+    color: var(--accent-purple);
 }
 
 nav button.active::before {
@@ -191,7 +188,7 @@ nav button.active::before {
 }
 
 .auth-form input:focus {
-    border-color: var(--accent-blue);
+    border-color: var(--accent-purple);
 }
 
 .auth-submit-btn {
@@ -219,7 +216,7 @@ nav button.active::before {
 }
 
 .auth-switch a {
-    color: var(--accent-blue);
+    color: var(--accent-purple);
     cursor: pointer;
     text-decoration: underline;
 }
@@ -342,7 +339,7 @@ main {
 
 /* ==================== HEADER ==================== */
 header {
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(30, 18, 43, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
@@ -376,7 +373,7 @@ header {
 
 .logo-text p {
     font-size: 0.9rem;
-    color: var(--accent-blue); 
+    color: var(--accent-purple); 
     margin-top: 2px;
 }
 
@@ -412,7 +409,7 @@ nav button::before {
     left: 50%;
     width: 0;
     height: 2px;
-    background: var(--accent-blue);
+    background: var(--accent-purple);
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
@@ -426,7 +423,7 @@ nav button:hover::before {
 }
 
 nav button.active {
-    color: var(--accent-blue);
+    color: var(--accent-purple);
 }
 
 nav button.active::before {

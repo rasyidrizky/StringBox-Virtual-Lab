@@ -6,7 +6,7 @@
     margin: 2rem 0;
     padding: 1.5rem;
     background: rgba(59, 130, 246, 0.1);
-    border-left: 4px solid var(--accent-blue);
+    border-left: 4px solid var(--accent-purple);
 }
 
 .drag-container {
@@ -26,7 +26,7 @@
 }
 
 .drag-zone h3 {
-    color: var(--accent-blue);
+    color: var(--accent-purple);
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
 }
@@ -51,7 +51,7 @@
 }
 
 .code-block:hover {
-    border-color: var(--accent-blue);
+    border-color: var(--accent-purple);
     transform: translateX(4px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
@@ -62,7 +62,7 @@
 }
 
 .drag-zone.drag-over {
-    border-color: var(--accent-blue);
+    border-color: var(--accent-purple);
     background: rgba(59, 130, 246, 0.15);
     border-style: solid;
 }
@@ -82,7 +82,7 @@
 }
 
 .check-button {
-    background: linear-gradient(135deg, var(--accent-blue), var(--light-blue));
+    background: linear-gradient(135deg, var(--accent-purple), var(--darker-purple));
     color: white;
     border: none;
     padding: 1rem 2rem;

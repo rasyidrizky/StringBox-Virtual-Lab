@@ -27,7 +27,7 @@
 .chapter-number {
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--accent-blue);
+    color: var(--accent-purple);
     background: rgba(59, 130, 246, 0.1);
     padding: 0.5rem 1rem;
     letter-spacing: 1px;
@@ -76,7 +76,7 @@
 
 .learning-objectives h3,
 .material-content h3 {
-    color: var(--accent-blue);
+    color: var(--accent-purple);
     font-size: 1.3rem;
     margin-bottom: 1rem;
 }
@@ -101,7 +101,7 @@
 
 .chapter-body code {
     background: var(--primary-dark);
-    color: var(--light-blue);
+    color: var(--darker-purple);
     padding: 0.2rem 0.5rem;
     font-size: 0.9rem;
     font-family: 'JetBrains Mono', 'Monaco', monospace;

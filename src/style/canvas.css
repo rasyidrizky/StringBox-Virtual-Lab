@@ -6,7 +6,7 @@
     margin: 2rem 0;
     padding: 1.5rem;
     background: rgba(59, 130, 246, 0.1);
-    border-left: 4px solid var(--accent-blue);
+    border-left: 4px solid var(--accent-purple);
 }
 
 .canvas-controls {
@@ -31,7 +31,7 @@
 
 .canvas-btn:hover {
     background: var(--primary-dark);
-    border-color: var(--accent-blue);
+    border-color: var(--accent-purple);
 }
 
 .canvas-btn.primary {
@@ -93,7 +93,7 @@
 
 .info-item span:last-child {
     display: block;
-    color: var(--accent-blue);
+    color: var(--accent-purple);
     font-size: 1.5rem;
     font-weight: 700;
 }
@@ -102,11 +102,11 @@
     margin: 2rem 0;
     padding: 2rem;
     background: var(--surface-bg);
-    border-left: 4px solid var(--accent-blue);
+    border-left: 4px solid var(--accent-purple);
 }
 
 .algorithm-explanation h3 {
-    color: var(--accent-blue);
+    color: var(--accent-purple);
     margin-bottom: 1rem;
 }
 

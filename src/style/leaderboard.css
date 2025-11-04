@@ -11,7 +11,7 @@
     margin-bottom: 2rem;
     padding: 1.5rem;
     background: rgba(59, 130, 246, 0.1);
-    border-left: 4px solid var(--accent-blue);
+    border-left: 4px solid var(--accent-purple);
     border-radius: 8px;
 }
 
@@ -38,14 +38,14 @@
 }
 
 .leaderboard-item:hover {
-    border-color: var(--accent-blue);
+    border-color: var(--accent-purple);
     transform: translateX(5px);
 }
 
 .leaderboard-rank {
     font-size: 2rem;
     font-weight: 800;
-    color: var(--accent-blue);
+    color: var(--accent-purple);
     min-width: 60px;
     text-align: center;
 }
@@ -84,7 +84,7 @@
 .leaderboard-score {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--accent-blue);
+    color: var(--accent-purple);
     min-width: 100px;
     text-align: right;
 }
